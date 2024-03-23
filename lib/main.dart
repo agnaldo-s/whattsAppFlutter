@@ -90,25 +90,30 @@ class _UsersPageState extends State<UsersPage> {
         future: readJson(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data?.length ?? 0,
-                itemBuilder: (context, index) {
-                  final user = snapshot.data![index];
-                  return Card(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(user.imageUrl),
-                      ),
-                      title: Text('${user.firstName} ${user.lastName}'),
-                      subtitle: Text(user.email),
+            return ListView.builder(
+              itemCount: snapshot.data?.length ?? 0,
+              itemBuilder: (context, index) {
+                final user = snapshot.data![index];
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(user.imageUrl),
                     ),
-                  );
-                },
-              );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
+                    title: Text('${user.firstName} ${user.lastName}'),
+                    subtitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+                      children: [
+                        Text(user.email),
+                        Text(
+                          "22:00", 
+                          style: TextStyle(fontSize: 12), 
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
           }
           return CircularProgressIndicator();
         },
