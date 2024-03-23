@@ -99,17 +99,17 @@ class _UsersPageState extends State<UsersPage> {
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(user.imageUrl),
                     ),
-                    title: Text('${user.firstName} ${user.lastName}'),
-                    subtitle: Row(
+                    title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween, 
                       children: [
-                        Text(user.email),
+                        Text('${user.firstName} ${user.lastName}'),
                         Text(
                           "22:00", 
                           style: TextStyle(fontSize: 12), 
                         ),
                       ],
                     ),
+                    subtitle: Text(user.email),
                   ),
                 );
               },
